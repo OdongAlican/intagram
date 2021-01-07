@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 import { sendUnauthenticatedRequest } from '../utils/api';
 
 export const AUTHENTICATED = 'authenticated_user';
@@ -21,15 +23,19 @@ export const signInAction = ({ email, password }, history) => async dispatch => 
   }
 };
 
-export const signUpAction = ({ username, password, email }, history) => async dispatch => {
-  const path = 'users';
+export const signUpAction = ({
+  name, email, password, password_confirmation,
+}, history) => async dispatch => {
+  const path = 'signup';
   const method = 'post';
-  const data = { username, password, email };
+  const data = {
+    name, email, password, password_confirmation,
+  };
   try {
     const response = await sendUnauthenticatedRequest(method, path, data);
     dispatch({ type: AUTHENTICATED });
-    localStorage.setItem('user', response.data.token);
-    console.log(response.data, 'successfully signed up');
+    localStorage.setItem('user', response.data.auth_token);
+    console.log(response.data.auth_token, 'successfully signed up');
     history.push('/home');
   } catch (error) {
     dispatch({
