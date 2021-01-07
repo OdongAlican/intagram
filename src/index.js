@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import { AUTHENTICATED } from './actions/index';
 import Router from './components/Router';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const store = createStore(
   rootReducer,
