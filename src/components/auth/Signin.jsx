@@ -5,6 +5,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInAction } from '../../actions';
+import BootstrapCarousel from './Carousel';
 
 const Signin = props => {
   const { history } = props;
@@ -19,9 +20,11 @@ const Signin = props => {
     e.preventDefault();
   };
   return (
-    <div className="signin-section">
-      <p>Sign In</p>
-      <div className="card col-md-3 mt-2 p-2">
+    <div className="signin-section d-flex">
+      <div className="left-carousel-section col-md-6 bg-primary">
+        <BootstrapCarousel />
+      </div>
+      <div className="card col-md-3 mt-2 p-2 col-md-6 bg-secondary">
         <form onSubmit={LogIn}>
           <input
             value={email}
