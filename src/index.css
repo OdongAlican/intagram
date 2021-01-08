@@ -3,7 +3,7 @@
   margin: 0;
 }
 
-/*  Landing Page */
+/* Landing Page */
 
 .dummy-phone {
   background-image: url('./Images/dummy-phone-2x.png');
@@ -11,7 +11,7 @@
   background-size: 454px 618px;
   position: relative;
   height: 618px;
-  background-color: teal;
+  margin-right: 40px;
   width: 420px;
 }
 
@@ -24,4 +24,231 @@
 .carousel-item img {
   height: 427px;
   width: 240px;
+}
+
+.left-carousel-section {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.right-carousel-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 27%;
+}
+
+.signin-section {
+  padding: 25px 0;
+}
+
+.left-signin-section {
+  border: 1.8px solid #dbdbdb;
+  border-radius: 3px;
+}
+
+.no-account-section {
+  display: flex;
+  padding: 10px 0;
+  margin-top: 10px;
+  border: 1.8px solid #dbdbdb;
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-account-section h6 {
+  font-size: 14px;
+}
+
+.no-account-section .have-no-account {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login-button {
+  background-color: #c0dcfc;
+  padding: 3px;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  outline: none;
+}
+
+.form-control-input {
+  border: 1.8px solid #dbdbdb;
+  border-radius: 3px;
+  display: block;
+  width: 75%;
+  margin: auto;
+  color: gray;
+  font-size: 13px;
+  height: 35px;
+  padding: 10px;
+  outline: none;
+}
+
+.upper-footer-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-section div {
+  margin: 0 10px;
+}
+
+.footer-section h6 {
+  font-size: 13px;
+  color: gray;
+}
+
+.upper-or-section {
+  display: flex;
+  align-items: center;
+  padding: 0 45px;
+}
+
+.empty-left-div,
+.empty-right-div {
+  height: 2px;
+  border-bottom: 1px solid #dbdbdb;
+  flex: 1;
+}
+
+.or-center-div {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: center;
+}
+
+.or-center-div-span {
+  display: block;
+}
+
+.or-center-div div {
+  font-size: 12px;
+  font-weight: bolder;
+  color: gray;
+}
+
+.facbook-middle-section {
+  padding: 0 45px;
+  display: flex;
+  justify-content: center;
+}
+
+.facbook-middle-section i {
+  font-size: 20px;
+  color: #385185;
+}
+
+.with-facebook-login {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.with-facebook-login div {
+  color: #385185;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.facebook-lower-section {
+  padding: 0 45px;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.facebook-lower-section .forgot-password {
+  font-size: 12px;
+  color: #00376b;
+}
+
+.images-section {
+  display: flex;
+  justify-content: center;
+}
+
+.first-image-section img {
+  width: 136px;
+  height: 40px;
+}
+
+.second-image-section img {
+  width: 134.28px;
+  height: 40px;
+  margin-left: 8px;
+}
+
+.get-the-app {
+  font-size: 14px;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Signup section */
+
+.signup-section {
+  border: 1.8px solid #dbdbdb;
+  width: 348px;
+  margin: 40px auto;
+  padding: 40px 0;
+}
+
+.with-facebook-login-two {
+  background-color: #0095f6;
+  width: 75%;
+  padding: 8px;
+  margin: auto;
+  border-radius: 3px;
+}
+
+.with-facebook-login-two i,
+.with-facebook-login-two .with-facebook-login div {
+  color: #fff;
+}
+
+.signup-see-photos {
+  width: 75%;
+  margin: auto;
+  text-align: center;
+  color: #8e8e8e;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.no-account-section-signup {
+  width: 348px;
+  margin: -30px auto 0;
+  padding: 20px 0;
+}
+
+.instagram-logo-section {
+  width: 75%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.terms-data,
+.cookies-policy {
+  font-size: 13px;
+  color: #8e8e8e;
+}
+
+.terms-data span,
+.cookies-policy span {
+  font-weight: bold;
+}
+
+.privacy-policy {
+  width: 75%;
+  margin: auto;
+  text-align: center;
 }
