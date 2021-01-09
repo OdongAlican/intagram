@@ -252,3 +252,97 @@
   margin: auto;
   text-align: center;
 }
+
+/* Navbar */
+
+.navbar-section {
+  width: 72.12%;
+  height: 54px;
+  margin: auto;
+  display: flex;
+  padding: 0 20px;
+}
+
+.main-nav-logo-section img {
+  width: 103px;
+  height: 32px;
+}
+
+.navbar-search {
+  display: flex;
+  align-items: center;
+}
+
+.fa-user-icon {
+  font-size: 21px;
+}
+
+.navbar-search .fa-search-inner {
+  margin-right: -19px;
+  font-size: 10px;
+  z-index: 1;
+  color: lightgray;
+}
+
+.over-navbar-search {
+  width: 215px;
+  height: 28px;
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  display: flex;
+  z-index: 2;
+  border-radius: 3px;
+  margin-right: -206px;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  align-items: center;
+  color: gray;
+}
+
+.over-navbar-search i {
+  margin-right: 5px;
+}
+
+.navbar-search input {
+  width: 215px;
+  height: 28px;
+  border-radius: 3px;
+  border: 1px solid #dbdbdb;
+  padding: 0 20px;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.outer-navbar-section {
+  width: 100%;
+  border-bottom: 1.8px solid #dbdbdb;
+}
+
+.main-nav-logo-section {
+  width: 38.5%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.navbar-icons-section {
+  width: 38.5%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.profile-section {
+  padding: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.direct,
+.find-people,
+.activity-feed,
+.profile-section {
+  margin-left: 20px;
+}
