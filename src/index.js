@@ -15,7 +15,7 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk)),
 );
 
-const user = localStorage.getItem('user');
+const user = localStorage.getItem('token');
 
 if (user) {
   store.dispatch({

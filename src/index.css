@@ -275,6 +275,7 @@
 
 .fa-user-icon {
   font-size: 21px;
+  cursor: pointer;
 }
 
 .navbar-search .fa-search-inner {
@@ -338,6 +339,7 @@
   padding: 2px;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .direct,
@@ -345,4 +347,117 @@
 .activity-feed,
 .profile-section {
   margin-left: 20px;
+}
+
+.modal-display-section {
+  position: absolute;
+  padding: 10px;
+  top: 40px;
+}
+
+/* Home section */
+
+.main-inner-home-section {
+  width: 72.12%;
+  margin: auto;
+  display: flex;
+  padding: 0 20px;
+}
+
+/* Profile section */
+
+.upper-user-profile-section {
+  width: 72.12%;
+  padding: 30px 20px 0;
+  margin: auto;
+  display: flex;
+}
+
+.user-profile-image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.user-profile-info-section {
+  flex: 2;
+}
+
+.user-profile-image-section img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.user-name-settings-section {
+  display: flex;
+}
+
+.user-settings-section {
+  display: flex;
+}
+
+.settings-button-section {
+  display: flex;
+  align-items: center;
+}
+
+.settings-button-section button {
+  margin-right: 20px;
+  border: 1px solid #DBDBDB;
+  cursor: pointer;
+  display: block;
+  font-weight: 600;
+  padding: 5px 9px;
+  text-align: center;
+  border-radius: 3px;
+  outline: none;
+  background-color: #fff;
+}
+
+.user-name-section {
+  display: flex;
+  align-items: center;
+}
+
+.user-name-section div {
+  font-size: 28px;
+  font-weight: 300;
+  margin-right: 20px;
+  display: block;
+}
+
+.settings-icon-section {
+  display: flex;
+  align-items: center;
+}
+
+.post-followers-section {
+  padding: 20px 0 10px;
+  display: flex;
+}
+
+.post-followers-section div {
+  margin-right: 40px;
+}
+
+.post-followers-section h6 {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.post-followers-section h6 span {
+  font-weight: lighter;
+  margin-left: 5px;
+}
+
+.lower-user-name-section {
+  font-size: 16px;
+  color: #262626;
+  font-weight: bold;
+}
+
+.user-quote-section {
+  font-size: 16px;
+  color: #262626;
 }
