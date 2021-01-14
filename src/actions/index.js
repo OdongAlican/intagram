@@ -13,7 +13,8 @@ export const signInAction = ({ email, password }, history) => async dispatch => 
   try {
     const response = await sendUnauthenticatedRequest(method, path, data);
     dispatch({ type: AUTHENTICATED });
-    localStorage.setItem('user', response.data.token);
+    localStorage.setItem('userId', response.data.user.id);
+    localStorage.setItem('token', response.data.auth_token);
     history.push('/home');
   } catch (error) {
     dispatch({
@@ -34,8 +35,8 @@ export const signUpAction = ({
   try {
     const response = await sendUnauthenticatedRequest(method, path, data);
     dispatch({ type: AUTHENTICATED });
-    localStorage.setItem('user', response.data.auth_token);
-    console.log(response.data.auth_token, 'successfully signed up');
+    localStorage.setItem('user', response.data);
+    console.log(response.data, 'successfully signed up');
     history.push('/home');
   } catch (error) {
     dispatch({
