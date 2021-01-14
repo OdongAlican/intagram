@@ -5,9 +5,14 @@ import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';
 
-const headers = { headers: { Authorization: `Bearer ${localStorage.user}` } };
+const headers = { headers: { Authorization: `Bearer ${localStorage.token}` } };
 
 export const sendUnauthenticatedRequest = async (method, path, data) => {
   const response = await axios[method](`${baseUrl}/${path}`, data);
+  return response;
+};
+
+export const FetchUserRequest = async (method, path, id) => {
+  const response = await axios[method](`${baseUrl}/${path}/${id}`, headers);
   return response;
 };
