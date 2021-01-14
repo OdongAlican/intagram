@@ -5,7 +5,7 @@ import Signin from './auth/Signin';
 import Signout from './auth/Signout';
 import Signup from './auth/Signup';
 import Home from './Home';
-import Navbar from './Navbar';
+import Profile from './Profile';
 
 const Router = () => (
   <div className="router-section">
@@ -14,8 +14,8 @@ const Router = () => (
         <Route exact path="/" component={Signin} />
         <Route exact path="/signout" component={Signout} />
         <Route exact path="/signup" component={Signup} />
-        <Route exact path="/navbar" component={Navbar} />
         <PrivateRoute exact path="/home" component={Home} />
+        <PrivateRoute exact path="/user/:id" component={Profile} />
       </Switch>
     </BrowserRouter>
   </div>
