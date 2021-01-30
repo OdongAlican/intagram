@@ -361,7 +361,7 @@
   width: 72.12%;
   margin: auto;
   display: flex;
-  padding: 0 20px;
+  padding: 30px 20px 0;
 }
 
 /* Profile section */
@@ -404,7 +404,7 @@
 
 .settings-button-section button {
   margin-right: 20px;
-  border: 1px solid #DBDBDB;
+  border: 1px solid #dbdbdb;
   cursor: pointer;
   display: block;
   font-weight: 600;
@@ -459,5 +459,170 @@
 
 .user-quote-section {
   font-size: 16px;
+  color: #262626;
+}
+
+svg {
+  cursor: pointer;
+}
+
+.home-main-photo-section {
+  width: 63%;
+  background-color: teal;
+  margin-right: 16px;
+}
+
+/* Lists of posts */
+
+.recent-posts-section,
+.common-posts {
+  border: 1.8px solid #dbdbdb;
+  border-radius: 3px;
+}
+
+.recent-posts-section {
+  margin-bottom: 24px;
+  padding: 16px 0 16px 16px;
+  background-color: cyan;
+}
+
+.follow-suggestion-section {
+  width: 35%;
+  padding: 8px 0 0 8px;
+}
+
+.follow-profile-image {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.inner-follow-suggestion-section {
+  display: flex;
+}
+
+.follow-name-section {
+  width: 62%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.follow-name-section {
+  padding-left: 15px;
+  font-size: 14px;
+}
+
+.follow-name-section-first {
+  font-weight: bold;
+  color: #262626;
+}
+
+.follow-name-section-second {
+  color: #8e8e8e;
+}
+
+.follow-switch-section {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #0095F6;
+  margin-left: auto;
+}
+
+.follow-middle-suggestion-section {
+  display: flex;
+  padding-top: 10px;
+}
+
+.follow-middle-suggestion-first {
+  font-weight: 600;
+  color: #8e8e8e;
+  font-size: 14px;
+}
+
+.follow-middle-suggestion-second {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.lower-profile-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.follow-lower-suggestion-section {
+  display: flex;
+  margin-top: 16px;
+}
+
+.side-footer-section {
+  margin-top: 20px;
+}
+
+.lower-follow-name-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10px;
+}
+
+.lower-follow-name-section-first {
+  font-size: 14px;
+  font-weight: bold;
+  color: #262626;
+}
+
+.lower-follow-name-section-second {
+  font-size: 12px;
+  color: #8e8e8e;
+  margin-top: -2px;
+} 
+
+.side-footer-section-top,
+.side-footer-section-bottom {
+  display: flex;
+  font-size: 11px;
+  color: #c7c7c7;
+}
+
+.instagram-footer-follow-section {
+  color: #c7c7c7;
+  font-size: 11px;
+  margin-top: 20px;
+}
+
+.top-recent-images-inner {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.top-recent-images {
+  height: 66px;
+  width: 66px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 3px solid #D24D84;
+  border-top: 3px solid #D24D84;
+  border-bottom: 3px solid #F99D51;
+  border-left: 3px solid #F99D51;
+}
+
+.top-recent-images-outer {
+  width: 80px;
+  padding: 0 4px;
+  text-align: center;
+}
+
+.top-recent-images-inner-name {
+  font-size: 12px;
   color: #262626;
 }
