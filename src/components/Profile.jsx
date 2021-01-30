@@ -1,9 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import {
+  useParams, Link, Switch,
+} from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
+import { fetchUser } from '../actions/user';
 import Profileimage from '../Images/icon.png';
 import Navbar from './Navbar';
-import { fetchUser } from '../actions/user';
+import Post from './Post';
+import Igtv from './Igtv';
+import Saved from './Saved';
+import Tagged from './Tagged';
 
 const Profile = () => {
   const { id } = useParams();
@@ -73,6 +80,50 @@ const Profile = () => {
           <div className="user-quote-section">
             I GUESS YOU CAN SAY THE HOOD DID IT
           </div>
+        </div>
+      </div>
+      <div className="inner-navigation-section w-50 bg-info">
+        <div className="d-flex p-2 bg-info w-75 mx-auto">
+          <Link
+            to={{
+              pathname: `/user/${id}`,
+            }}
+            className="post-nav-section"
+          >
+            Post
+          </Link>
+          <Link
+            to={{
+              pathname: `/user/${id}/igtv`,
+            }}
+            className="igtv-nav-section"
+          >
+            IGTV
+          </Link>
+          <Link
+            to={{
+              pathname: `/user/${id}/saved`,
+            }}
+            className="saved-nav-section"
+          >
+            Saved
+          </Link>
+          <Link
+            to={{
+              pathname: `/user/${id}/tagged`,
+            }}
+            className="tagged"
+          >
+            Tagged
+          </Link>
+        </div>
+        <div className="actual-pages-section">
+          <Switch>
+            <PrivateRoute exact path="/user/:id" component={Post} />
+            <PrivateRoute exact path="/user/:id/igtv" component={Igtv} />
+            <PrivateRoute exact path="/user/:id/saved" component={Saved} />
+            <PrivateRoute exact path="/user/:id/tagged" component={Tagged} />
+          </Switch>
         </div>
       </div>
     </div>
