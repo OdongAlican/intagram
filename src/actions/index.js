@@ -35,8 +35,8 @@ export const signUpAction = ({
   try {
     const response = await sendUnauthenticatedRequest(method, path, data);
     dispatch({ type: AUTHENTICATED });
-    localStorage.setItem('user', response.data);
-    console.log(response.data, 'successfully signed up');
+    localStorage.setItem('userId', response.data.user.id);
+    localStorage.setItem('token', response.data.auth_token);
     history.push('/home');
   } catch (error) {
     dispatch({
