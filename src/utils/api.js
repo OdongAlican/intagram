@@ -16,3 +16,8 @@ export const FetchUserRequest = async (method, path, id) => {
   const response = await axios[method](`${baseUrl}/${path}/${id}`, headers);
   return response;
 };
+
+export const FetchPostRequest = async (method, path) => {
+  const response = await axios[method](`${baseUrl}/${path}`, headers);
+  return response;
+};
