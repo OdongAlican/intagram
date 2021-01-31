@@ -468,7 +468,6 @@ svg {
 
 .home-main-photo-section {
   width: 63%;
-  background-color: teal;
   margin-right: 16px;
 }
 
@@ -482,8 +481,7 @@ svg {
 
 .recent-posts-section {
   margin-bottom: 24px;
-  padding: 16px 0 16px 16px;
-  background-color: cyan;
+  padding: 16px 2px;
 }
 
 .follow-suggestion-section {
@@ -617,12 +615,27 @@ svg {
 }
 
 .top-recent-images-outer {
-  width: 80px;
   padding: 0 4px;
   text-align: center;
-}
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+} 
 
 .top-recent-images-inner-name {
   font-size: 12px;
   color: #262626;
+} 
+
+.rec.rec-arrow {
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  padding: 0;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
 }
