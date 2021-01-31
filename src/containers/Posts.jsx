@@ -1,12 +1,21 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import Carousel from 'react-elastic-carousel';
 import { fetchPosts } from '../actions/post';
 import Profileimage from '../Images/icon.png';
-import Carousel from 'react-elastic-carousel';
-
+import Item from '../components/Styled';
 
 const Posts = () => {
   const dispatch = useDispatch();
+
+  const breakPoints = [
+    { width: 59.333, itemsToShow: 1 },
+    { width: 118.6667, itemsToShow: 2 },
+    { width: 178, itemsToShow: 3 },
+    { width: 237.333, itemsToShow: 4 },
+    { width: 296.6667, itemsToShow: 5 },
+    { width: 350, itemsToShow: 6 },
+  ];
 
   const recentPosts = [
     {
@@ -53,12 +62,16 @@ const Posts = () => {
 
   return (
     <div className="list-of-posts">
-      <div className="recent-posts-section d-flex">
+      <Carousel
+        pagination={false}
+        breakPoints={breakPoints}
+        className="recent-posts-section"
+      >
         {
-          recentPosts.map(val => (
+        recentPosts.map(post => (
+          <Item key={post.id}>
             <div
               className="top-recent-images-outer"
-              key={val.id}
             >
               <div className="top-recent-images">
                 <img
@@ -69,14 +82,14 @@ const Posts = () => {
               </div>
               <span className="top-recent-images-inner-name">
                 {' '}
-                { val.userName.length < 10 ? `${val.userName}`
-                  : `${val.userName.substring(0, 10)}...` }
+                { post.userName.length < 10 ? `${post.userName}`
+                  : `${post.userName.substring(0, 10)}...` }
               </span>
             </div>
-          ))
-        }
-
-      </div>
+          </Item>
+        ))
+      }
+      </Carousel>
       <div className="common-posts">
         <p>List of posts</p>
       </div>
