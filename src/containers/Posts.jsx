@@ -9,11 +9,11 @@ const Posts = () => {
   const dispatch = useDispatch();
 
   const breakPoints = [
-    { width: 59.333, itemsToShow: 1 },
-    { width: 118.6667, itemsToShow: 2 },
+    { width: 59, itemsToShow: 1 },
+    { width: 119, itemsToShow: 2 },
     { width: 178, itemsToShow: 3 },
-    { width: 237.333, itemsToShow: 4 },
-    { width: 296.6667, itemsToShow: 5 },
+    { width: 237, itemsToShow: 4 },
+    { width: 297, itemsToShow: 5 },
     { width: 350, itemsToShow: 6 },
   ];
 
@@ -56,6 +56,34 @@ const Posts = () => {
     },
   ];
 
+  // const listOfPosts = [
+  //   {
+  //     likedLast: "fusemvni",
+  //     totalLiked: 1234567,
+  //     username: "therock",
+  //     postText: `Midnight oil burners and training hard/dialing in my conditioning for BLACK ADAM⚡️
+  //     Always be grateful for the grind and remember to have some fun along the way.`,
+  //     comments: 71245,
+  //     commentors : [
+  //       {
+  //       person: "wol4sk8tes",
+  //       quotes: "Stay strong my man"
+  //       },
+  //       {
+  //       person: "wol4sk8tes",
+  //       quotes: "Stay strong my man"
+  //       },
+  //       {
+  //       person: "wol4sk8tes",
+  //       quotes: "Stay strong my man"
+  //       },
+  //       {
+  //       person: "wol4sk8tes",
+  //       quotes: "Stay strong my man"
+  //       },
+  //     ]
+  //   }
+  // ]
   useEffect(() => {
     dispatch(fetchPosts());
   });
@@ -91,7 +119,9 @@ const Posts = () => {
       }
       </Carousel>
       <div className="common-posts">
-        <p>List of posts</p>
+        {
+
+        }
       </div>
     </div>
   );
