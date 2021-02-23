@@ -319,6 +319,10 @@
 .outer-navbar-section {
   width: 100%;
   border-bottom: 1.8px solid #dbdbdb;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  background-color: #fff;
 }
 
 .main-nav-logo-section {
@@ -359,7 +363,7 @@
 
 .main-inner-home-section {
   width: 72.12%;
-  margin: auto;
+  margin: 60px auto;
   display: flex;
   padding: 30px 20px 0;
 }
@@ -484,8 +488,10 @@ svg {
 }
 
 .follow-suggestion-section {
-  width: 35%;
-  padding: 8px 0 0 8px;
+  width: 320px;
+  padding: 8px 0 0 0;
+  position: fixed;
+  right: 210px;
 }
 
 .follow-profile-image {
