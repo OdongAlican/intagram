@@ -22,7 +22,10 @@ const Post = ({ post }) => (
       </div>
     </div>
     <div className="image-carousel-section">
-      <Carousel className="main-image-carousel">
+      <Carousel
+        indicators={false}
+        className="main-image-carousel"
+      >
         {
           post.images.map(image => (
             <Carousel.Item
