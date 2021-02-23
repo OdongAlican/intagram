@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Carousel from 'react-elastic-carousel';
 import { fetchPosts } from '../actions/post';
 import Profileimage from '../Images/icon.png';
@@ -15,6 +15,9 @@ import NikeSeven from '../Images/nike7.jpg';
 
 const Posts = () => {
   const dispatch = useDispatch();
+
+  const stateList = useSelector(state => state.postReducer.posts, 'posts inside');
+  console.log(stateList);
 
   const breakPoints = [
     { width: 59, itemsToShow: 1 },
@@ -126,7 +129,7 @@ const Posts = () => {
 
   useEffect(() => {
     dispatch(fetchPosts());
-  });
+  }, []);
 
   return (
     <div className="list-of-posts">
