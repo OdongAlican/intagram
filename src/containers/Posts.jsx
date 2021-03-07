@@ -16,8 +16,10 @@ import NikeSeven from '../Images/nike7.jpg';
 const Posts = () => {
   const dispatch = useDispatch();
 
-  const stateList = useSelector(state => state.postReducer.posts, 'posts inside');
-  console.log(stateList);
+  const stateList = useSelector(state => state.postReducer.posts);
+  stateList.forEach(element => {
+    console.log(element.user);
+  });
 
   const breakPoints = [
     { width: 59, itemsToShow: 1 },
