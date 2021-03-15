@@ -21,7 +21,6 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(fetchUser(id));
-    console.log('inside Profile');
   }, []);
 
   return (
