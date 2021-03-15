@@ -16,7 +16,6 @@ export const fetchPosts = () => async dispatch => {
 
   try {
     const response = await FetchPostRequest(method, path);
-    console.log(response.data, 'posts list');
     dispatch(postsSuccessFetch(response.data));
   } catch (error) {
     console.log(error, 'post errors');
