@@ -7,10 +7,11 @@ import PrivateRoute from './PrivateRoute';
 import { fetchUser } from '../actions/user';
 import Profileimage from '../Images/icon.png';
 import Navbar from './Navbar';
-import Post from './Post';
+import UserPost from './UserPosts';
 import Igtv from './Igtv';
 import Saved from './Saved';
 import Tagged from './Tagged';
+import NewConversationForm from './NewConversationForm';
 
 const Profile = () => {
   const { id } = useParams();
@@ -20,6 +21,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(fetchUser(id));
+    console.log('inside Profile');
   }, []);
 
   return (
@@ -38,7 +40,13 @@ const Profile = () => {
             </div>
             <div className="user-settings-section">
               <div className="settings-button-section">
-                <button type="button">Edit Profile</button>
+                <button
+                  type="button"
+                  className="btn border mr-2"
+                >
+                  Messaging
+                </button>
+                <NewConversationForm userData={userDetails} />
               </div>
               <div className="settings-icon-section">
                 <svg
@@ -82,11 +90,11 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className="inner-navigation-section w-50 bg-info">
+      <div className="inner-navigation-section bg-info">
         <div className="d-flex p-2 bg-info w-75 mx-auto">
           <Link
             to={{
-              pathname: `/user/${id}`,
+              pathname: `/profile/${id}`,
             }}
             className="post-nav-section"
           >
@@ -94,7 +102,7 @@ const Profile = () => {
           </Link>
           <Link
             to={{
-              pathname: `/user/${id}/igtv`,
+              pathname: `/profile/${id}/igtv`,
             }}
             className="igtv-nav-section"
           >
@@ -102,7 +110,7 @@ const Profile = () => {
           </Link>
           <Link
             to={{
-              pathname: `/user/${id}/saved`,
+              pathname: `/profile/${id}/saved`,
             }}
             className="saved-nav-section"
           >
@@ -110,7 +118,7 @@ const Profile = () => {
           </Link>
           <Link
             to={{
-              pathname: `/user/${id}/tagged`,
+              pathname: `/profile/${id}/tagged`,
             }}
             className="tagged"
           >
@@ -119,10 +127,11 @@ const Profile = () => {
         </div>
         <div className="actual-pages-section">
           <Switch>
-            <PrivateRoute exact path="/user/:id" component={Post} />
-            <PrivateRoute exact path="/user/:id/igtv" component={Igtv} />
-            <PrivateRoute exact path="/user/:id/saved" component={Saved} />
-            <PrivateRoute exact path="/user/:id/tagged" component={Tagged} />
+            <PrivateRoute exact path="/profile/:id" component={UserPost} />
+            <PrivateRoute exact path="/profile/:id/igtv" component={Igtv} />
+            <PrivateRoute exact path="/profile/:id/igtv" component={Igtv} />
+            <PrivateRoute exact path="/profile/:id/saved" component={Saved} />
+            <PrivateRoute exact path="/profile/:id/tagged" component={Tagged} />
           </Switch>
         </div>
       </div>
