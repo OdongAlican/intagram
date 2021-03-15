@@ -105,7 +105,7 @@ const Navbar = () => {
             <div className={`modal-display-section shadow-sm ${displayDrop}`}>
 
               <Link to={{
-                pathname: `/user/${currentUSerId}`,
+                pathname: `/profile/${parseInt(currentUSerId, 10)}`,
               }}
               >
                 <p>Profile</p>
