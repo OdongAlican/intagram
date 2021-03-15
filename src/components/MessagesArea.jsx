@@ -22,5 +22,5 @@ const orderedMessages = messagings => {
   const sortedMessages = messagings.sort(
     (a, b) => new Date(a.created_at) - new Date(b.created_at),
   );
-  return sortedMessages.map(message => <div className=" card col-md-2 bg-info mb-2" key={message.id}>{message.text}</div>);
+  return sortedMessages.map(message => <div className=" card bg-info mb-2" key={message.id}>{message.text}</div>);
 };
