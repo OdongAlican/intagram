@@ -1,11 +1,47 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './Navbar';
 import Posts from '../containers/Posts';
 import Profileimage from '../Images/icon.png';
 
 const Home = () => {
-  console.log(localStorage.userId);
-  console.log(localStorage.token, 'token inner');
+  const recentPosts = [
+    {
+      id: 1,
+      userName: 'djjazzyjeff',
+    },
+    {
+      id: 2,
+      userName: 'marymajorin',
+    },
+    {
+      id: 3,
+      userName: 'fcbayern',
+    },
+    {
+      id: 4,
+      userName: 'okelloroba',
+    },
+    {
+      id: 5,
+      userName: 'nandi_global',
+    },
+    {
+      id: 6,
+      userName: 'acebooty9',
+    },
+    {
+      id: 7,
+      userName: 'pearlkagon',
+    },
+    {
+      id: 8,
+      userName: 'jesselingard',
+    },
+    {
+      id: 9,
+      userName: 'iambangalee',
+    },
+  ];
 
   const listToFollow = [
     {
@@ -31,12 +67,18 @@ const Home = () => {
     },
   ];
 
+  useEffect(() => {
+    console.log('still inside home');
+  }, []);
+
   return (
     <div className="home-section">
       <Navbar />
       <div className="main-inner-home-section">
         <div className="home-main-photo-section">
-          <Posts />
+          <Posts
+            recentPosts={recentPosts}
+          />
         </div>
         <div className="follow-suggestion-section">
           <div className="inner-follow-suggestion-section pb-2">
