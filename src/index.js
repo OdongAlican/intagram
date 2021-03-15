@@ -5,12 +5,18 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { ActionCableProvider } from 'react-actioncable-provider';
+import ru from 'javascript-time-ago/locale/ru';
 import thunk from 'redux-thunk';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
 import rootReducer from './reducers';
 import { AUTHENTICATED } from './actions/index';
 import Router from './components/Router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { API_WS_ROOT } from './constants';
+
+TimeAgo.addDefaultLocale(en);
+TimeAgo.addLocale(ru);
 
 const store = createStore(
   rootReducer,
