@@ -17,7 +17,7 @@ const Router = () => (
         <Route exact path="/conversations" component={ConversationsList} />
         <Route exact path="/signup" component={Signup} />
         <PrivateRoute exact path="/home" component={Home} />
-        <PrivateRoute path="/user/:id" component={Profile} />
+        <PrivateRoute path="/profile/:id" component={Profile} />
       </Switch>
     </BrowserRouter>
   </div>
