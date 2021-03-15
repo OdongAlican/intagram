@@ -370,10 +370,11 @@
 
 /* Profile section */
 
-.upper-user-profile-section {
+.upper-user-profile-section,
+.inner-navigation-section {
   width: 72.12%;
   padding: 30px 20px 0;
-  margin: auto;
+  margin: 60px auto;
   display: flex;
 }
 
@@ -789,4 +790,70 @@ svg {
   color: #0095f6;
   font-weight: 600;
   font-size: 14px;
+}
+
+/* conversationsList-section */
+
+.conversationsList-section {
+  width: 72.12%;
+  margin: 80px auto;
+  display: flex;
+}
+
+.left-conversation-section {
+  width: 37.43%;
+  background-color: #fff;
+  border: 1.8px solid #dbdbdb;
+}
+
+.each-conversation {
+  display: flex;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+.top-header-section {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  border-bottom: 0.8px solid #dbdbdb;
+  margin-bottom: 8px;
+}
+
+.reciever-image img {
+  width: 56px;
+  height: 56px;
+}
+
+.reciever-name {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 0 20px;
+}
+
+.sample-image-section {
+  background-image: url('/src/Images/last-image.png');
+  background-repeat: no-repeat;
+  background-position: -244px 0;
+  height: 96px;
+  width: 96px;
+}
+
+.right-reservation-section {
+  width: 62.57%;
+  border-top: 1.8px solid #dbdbdb;
+  border-right: 1.8px solid #dbdbdb;
+  border-bottom: 1.8px solid #dbdbdb;
+}
+
+.main-sample-image-sect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 85vh;
 }
