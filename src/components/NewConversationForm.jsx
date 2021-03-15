@@ -1,41 +1,62 @@
 /* eslint-disable react/state-in-constructor */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router';
 import { API_ROOT } from '../constants';
 import { headers } from '../utils/api';
 
-class NewConversationForm extends React.Component {
-  state = {
-    title: '',
-  };
+const NewConversationForm = ({ userData }) => {
+  const [title, setTitle] = useState('');
+  const [sender, setSender] = useState(null);
+  const [receiver, setReciever] = useState(null);
 
-  handleChange = e => {
-    this.setState({ title: e.target.value });
-  };
+  const history = useHistory();
 
-  handleSubmit = e => {
+  useEffect(() => {
+    setTitle(userData.name);
+    setSender(parseInt(localStorage.userId, 10));
+    setReciever(4);
+  }, []);
+
+  const handleSubmit = e => {
     e.preventDefault();
-    axios.post(`${API_ROOT}/conversations`, { title: this.state.title }, headers);
-    this.setState({ title: '' });
+    const data = {
+      title, user_id: sender, reciever_id: receiver,
+    };
+    try {
+      axios.post(`${API_ROOT}/conversations`, data, headers);
+      history.push('/conversations');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  render = () => (
+  return (
     <div className="newConversationForm">
-      <form onSubmit={this.handleSubmit}>
-        <label>New Conversation:</label>
-        <br />
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={this.state.title}
-          onChange={this.handleChange}
+          className="d-none"
+          value={title}
         />
-        <input type="submit" />
+        <input
+          type="text"
+          className="d-none"
+          value={sender}
+        />
+        <input
+          type="text"
+          className="d-none"
+          value={receiver}
+        />
+        <input type="submit" className="btn border mr-2" />
       </form>
     </div>
   );
-}
+};
 
 export default NewConversationForm;
