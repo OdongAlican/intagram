@@ -11,12 +11,16 @@ export const postsSuccessFetch = posts => ({
 });
 
 export const fetchPosts = () => async dispatch => {
+  console.log('indide');
   const method = 'get';
   const path = 'posts';
-
   try {
     const response = await FetchPostRequest(method, path);
-    dispatch(postsSuccessFetch(response.data));
+    const dataList = JSON.parse(response.data.data);
+    const list = response.data.followeesList;
+    const result = { dataList, list };
+    dispatch(postsSuccessFetch(result));
+    console.log(response, dispatch);
   } catch (error) {
     console.log(error, 'post errors');
   }
