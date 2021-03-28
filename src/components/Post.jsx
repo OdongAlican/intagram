@@ -1,19 +1,31 @@
 /* eslint-disable react/prop-types */
 
-import React from 'react';
+import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import { useDispatch } from 'react-redux';
+import { addCommentToPost } from '../actions/comment';
+import { likeToPost } from '../actions/like';
 import Profileimage from '../Images/icon.png';
 import NikeOne from '../Images/nike1.jpg';
 import NikeTwo from '../Images/nike2.jpg';
 import NikeThree from '../Images/nike3.jpg';
 import LastSeen from './LastSeen';
-// import NikeFour from '../Images/nike4.jpg';
-// import NikeFive from '../Images/nike5.jpg';
-// import NikeSix from '../Images/nike6.jpg';
-// import NikeSeven from '../Images/nike7.jpg';
 
 const Post = ({ post }) => {
   const images = [NikeOne, NikeTwo, NikeThree];
+  const [content, setContent] = useState('');
+  const dispatch = useDispatch();
+  const addComment = e => {
+    e.preventDefault();
+    dispatch(addCommentToPost(content, post.id));
+    setContent('');
+  };
+
+  const likePost = e => {
+    e.preventDefault();
+    dispatch(likeToPost(post.id));
+  };
+
   return (
     <div className="single-post-section">
       <div className="top-username-image-section">
@@ -51,6 +63,7 @@ const Post = ({ post }) => {
       <div className="lower-svg-section">
         <div className="like-and-comment-section">
           <svg
+            onClick={likePost}
             aria-label="Like"
             className="_8-yf5 first-post-svg"
             fill="#262626"
@@ -143,10 +156,15 @@ const Post = ({ post }) => {
               <path d="M34.9 24c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5 1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5zm-21.8 0c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5-2.5-1.1-2.5-2.5zM24 37.3c-5.2 0-8-3.5-8.2-3.7-.5-.6-.4-1.6.2-2.1.6-.5 1.6-.4 2.1.2.1.1 2.1 2.5 5.8 2.5 3.7 0 5.8-2.5 5.8-2.5.5-.6 1.5-.7 2.1-.2.6.5.7 1.5.2 2.1 0 .2-2.8 3.7-8 3.7z" />
             </svg>
           </div>
-          <form className="comment-input-section-form">
+          <form
+            onSubmit={addComment}
+            className="comment-input-section-form"
+          >
             <input
               className="comment-input-section-input"
               type="text"
+              value={content}
+              onChange={e => setContent(e.target.value)}
               placeholder="Add a comment..."
             />
             <input
