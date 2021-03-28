@@ -14,6 +14,7 @@ export const signInAction = ({ email, password }, history) => async dispatch => 
     const response = await sendUnauthenticatedRequest(method, path, data);
     dispatch({ type: AUTHENTICATED });
     localStorage.setItem('userId', response.data.user.id);
+    localStorage.setItem('user', JSON.stringify(response.data.user));
     localStorage.setItem('token', response.data.auth_token);
     history.push('/home');
   } catch (error) {
@@ -36,6 +37,7 @@ export const signUpAction = ({
     const response = await sendUnauthenticatedRequest(method, path, data);
     dispatch({ type: AUTHENTICATED });
     localStorage.setItem('userId', response.data.user.id);
+    localStorage.setItem('user', response.data.user);
     localStorage.setItem('token', response.data.auth_token);
     history.push('/home');
   } catch (error) {
