@@ -263,6 +263,13 @@
   padding: 0 20px;
 }
 
+.user-profile-link-section {
+  color: #262622;
+  text-decoration: none;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
 .main-nav-logo-section img {
   width: 103px;
   height: 32px;
@@ -355,8 +362,29 @@
 
 .modal-display-section {
   position: absolute;
-  padding: 10px;
-  top: 40px;
+  top: 41px;
+  width: 230px;
+  border-radius: 5px;
+  left: -180px;
+  background-color: #fff;
+  
+}
+
+.logout-link-section button {
+  font-size: 14px;
+}
+
+.random-star-division {
+  position: absolute;
+  top: -10px;
+  height: 0;
+  width: 0;
+  right: 30px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid gray;
+  background-color: #fff;
 }
 
 /* Home section */
