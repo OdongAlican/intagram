@@ -1,3 +1,5 @@
+/* eslint-disable quote-props */
+/* eslint-disable quotes */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 
@@ -19,5 +21,25 @@ export const FetchUserRequest = async (method, path, id) => {
 
 export const FetchPostRequest = async (method, path) => {
   const response = await axios[method](`${baseUrl}/${path}`, headers);
+  return response;
+};
+
+export const FetchAllUsersRequest = async (method, path) => {
+  const response = await axios[method](`${baseUrl}/${path}`, headers);
+  return response;
+};
+
+export const FetchPeopleToFollow = async (method, path) => {
+  const response = await axios[method](`${baseUrl}/${path}`, headers);
+  return response;
+};
+
+export const CommentOnPost = async (method, path, data) => {
+  const response = await axios[method](`${baseUrl}/${path}`, data, headers);
+  return response;
+};
+
+export const LikeAPost = async (method, path, data) => {
+  const response = await axios[method](`${baseUrl}/${path}`, data, headers);
   return response;
 };
