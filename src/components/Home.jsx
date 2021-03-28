@@ -1,84 +1,29 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Navbar from './Navbar';
 import Posts from '../containers/Posts';
 import Profileimage from '../Images/icon.png';
+import PeopleToFollow from './PeopleToFollow';
+import { fetchPosts } from '../actions/post';
 
 const Home = () => {
-  const recentPosts = [
-    {
-      id: 1,
-      userName: 'djjazzyjeff',
-    },
-    {
-      id: 2,
-      userName: 'marymajorin',
-    },
-    {
-      id: 3,
-      userName: 'fcbayern',
-    },
-    {
-      id: 4,
-      userName: 'okelloroba',
-    },
-    {
-      id: 5,
-      userName: 'nandi_global',
-    },
-    {
-      id: 6,
-      userName: 'acebooty9',
-    },
-    {
-      id: 7,
-      userName: 'pearlkagon',
-    },
-    {
-      id: 8,
-      userName: 'jesselingard',
-    },
-    {
-      id: 9,
-      userName: 'iambangalee',
-    },
-  ];
-
-  const listToFollow = [
-    {
-      id: 1,
-      name: 'wilsonkulemujungu',
-      type: 'Suggested for you',
-    }, {
-      id: 2,
-      name: 'fredoketa',
-      type: 'New to Instagram',
-    }, {
-      id: 3,
-      name: 'musundigilbertbruno',
-      type: 'Suggested for you',
-    }, {
-      id: 4,
-      name: 'fontesfoundationug',
-      type: 'Follows you',
-    }, {
-      id: 5,
-      name: 'mandelaeds',
-      type: 'Followed by agneskirabo',
-    },
-  ];
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('still inside home');
+    dispatch(fetchPosts());
   }, []);
+
+  const postsList = useSelector(state => state.postReducer.posts);
+  const followeesList = useSelector(state => state.postReducer.followeeList);
 
   return (
     <div className="home-section">
+
       <Navbar />
       <div className="main-inner-home-section">
         <div className="home-main-photo-section">
-          <Posts
-            recentPosts={recentPosts}
-          />
+          <Posts postsList={postsList} />
         </div>
         <div className="follow-suggestion-section">
           <div className="inner-follow-suggestion-section pb-2">
@@ -106,26 +51,8 @@ const Home = () => {
             </div>
           </div>
           {
-            listToFollow.map(userdetail => (
-              <div
-                key={userdetail.id}
-                className="follow-lower-suggestion-section"
-              >
-                <div className="lower-suggestion-image">
-                  <img
-                    className="lower-profile-image"
-                    src={Profileimage}
-                    alt="profile"
-                  />
-                </div>
-                <div className="lower-follow-name-section">
-                  <span className="lower-follow-name-section-first">{ userdetail.name }</span>
-                  <span className="lower-follow-name-section-second">{ userdetail.type }</span>
-                </div>
-                <div className="follow-switch-section">
-                  <span>Follow</span>
-                </div>
-              </div>
+            followeesList.splice(0, 5).map(userdetail => (
+              <PeopleToFollow key={userdetail.id} userdetail={userdetail} />
             ))
           }
           <div className="side-footer-section">
