@@ -1,6 +1,11 @@
 import { AUTHENTICATED, UNAUTHENTICATED, AUTHENTICATION_ERROR } from '../actions';
 
-const authReducer = (state = {}, action) => {
+const initialState = {
+  authenticated: false,
+  error: '',
+};
+
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case AUTHENTICATED:
       return {
