@@ -1,9 +1,17 @@
-import { FETCH_USER_SUCCESS, FETCH_USER_FAILURE, FETCH_USER_PENDING } from '../actions/user';
+import {
+  FETCH_USER_SUCCESS,
+  FETCH_USER_FAILURE,
+  FETCH_USER_PENDING,
+  FETCH_USERS_SUCCESS,
+  FETCH_NEWPEOPLE_SUCCESS,
+} from '../actions/user';
 
 const initialState = {
   user: {},
   error: '',
   loading: false,
+  users: [],
+  newPeopleFollow: [],
 };
 
 const userReducer = (state = initialState, action) => {
@@ -27,6 +35,20 @@ const userReducer = (state = initialState, action) => {
         ...state,
         user: {},
         error: action.payload,
+        loading: false,
+      };
+    case FETCH_USERS_SUCCESS:
+      return {
+        ...state,
+        users: action.payload,
+        error: '',
+        loading: false,
+      };
+    case FETCH_NEWPEOPLE_SUCCESS:
+      return {
+        ...state,
+        newPeopleFollow: action.payload,
+        error: '',
         loading: false,
       };
     default:
