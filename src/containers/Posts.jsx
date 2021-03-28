@@ -1,18 +1,12 @@
 /* eslint-disable react/prop-types */
 
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import Carousel from 'react-elastic-carousel';
-import { fetchPosts } from '../actions/post';
 import Profileimage from '../Images/icon.png';
 import Item from '../components/Styled';
 import Post from '../components/Post';
 
-const Posts = ({ recentPosts }) => {
-  const dispatch = useDispatch();
-
-  const postsList = useSelector(state => state.postReducer.posts);
-
+const Posts = ({ postsList }) => {
   const breakPoints = [
     { width: 59, itemsToShow: 1 },
     { width: 119, itemsToShow: 2 },
@@ -22,10 +16,6 @@ const Posts = ({ recentPosts }) => {
     { width: 350, itemsToShow: 6 },
   ];
 
-  useEffect(() => {
-    dispatch(fetchPosts());
-  }, []);
-
   return (
     <div className="list-of-posts">
       <Carousel
@@ -34,7 +24,7 @@ const Posts = ({ recentPosts }) => {
         className="recent-posts-section"
       >
         {
-        recentPosts.map(post => (
+        postsList.map(post => (
           <Item key={post.id}>
             <div
               className="top-recent-images-outer"
@@ -48,8 +38,8 @@ const Posts = ({ recentPosts }) => {
               </div>
               <span className="top-recent-images-inner-name">
                 {' '}
-                { post.userName.length < 10 ? `${post.userName}`
-                  : `${post.userName.substring(0, 10)}...` }
+                { post.user.name.length < 10 ? `${post.user.name}`
+                  : `${post.user.name.substring(0, 10)}...` }
               </span>
             </div>
           </Item>
