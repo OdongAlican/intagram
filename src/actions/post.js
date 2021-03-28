@@ -11,7 +11,6 @@ export const postsSuccessFetch = posts => ({
 });
 
 export const fetchPosts = () => async dispatch => {
-  console.log('indide');
   const method = 'get';
   const path = 'posts';
   try {
