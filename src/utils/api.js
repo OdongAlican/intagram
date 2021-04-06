@@ -1,8 +1,3 @@
-/* eslint-disable quote-props */
-/* eslint-disable quotes */
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/prefer-default-export */
-
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000';
@@ -20,6 +15,8 @@ export const FetchUserRequest = async (method, path, id) => {
 };
 
 export const FetchPostRequest = async (method, path) => {
+  console.log(headers, 'headers');
+  console.log('posts details here');
   const response = await axios[method](`${baseUrl}/${path}`, headers);
   return response;
 };
@@ -41,5 +38,20 @@ export const CommentOnPost = async (method, path, data) => {
 
 export const LikeAPost = async (method, path, data) => {
   const response = await axios[method](`${baseUrl}/${path}`, data, headers);
+  return response;
+};
+
+export const DeleteAPostLike = async (method, path) => {
+  const response = await axios[method](`${baseUrl}/${path}`, headers);
+  return response;
+};
+
+export const bookmarkAPost = async (method, path, data) => {
+  const response = await axios[method](`${baseUrl}/${path}`, data, headers);
+  return response;
+};
+
+export const DeleteAPostBookmark = async (method, path) => {
+  const response = await axios[method](`${baseUrl}/${path}`, headers);
   return response;
 };
