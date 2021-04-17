@@ -12,7 +12,10 @@ export const signInAction = ({ email, password }, history) => async dispatch => 
   const data = { email, password };
   try {
     const response = await sendUnauthenticatedRequest(method, path, data);
-    dispatch({ type: AUTHENTICATED });
+    dispatch({
+      type: AUTHENTICATED,
+      payload: response.data.token,
+    });
     localStorage.setItem('userId', response.data.user.id);
     localStorage.setItem('token', response.data.token);
     history.push('/home');

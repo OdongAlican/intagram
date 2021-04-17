@@ -14,10 +14,9 @@ export const FetchUserRequest = async (method, path, id) => {
   return response;
 };
 
-export const FetchPostRequest = async (method, path) => {
-  console.log(headers, 'headers');
-  console.log('posts details here');
-  const response = await axios[method](`${baseUrl}/${path}`, headers);
+export const FetchPostRequest = async (method, path, tokenData) => {
+  const headings = { headers: { Authorization: `Bearer ${tokenData}` } };
+  const response = await axios[method](`${baseUrl}/${path}`, headings);
   return response;
 };
 

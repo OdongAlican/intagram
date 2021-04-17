@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Navbar from './Navbar';
 import Posts from '../containers/Posts';
@@ -9,9 +11,15 @@ import { fetchPosts } from '../actions/post';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const [openModal, setOpenModal] = useState('d-none');
+
+  const displayModal = id => {
+    setOpenModal('');
+    console.log(id);
+  };
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(fetchPosts(localStorage.token));
   }, []);
 
   const postsList = useSelector(state => state.postReducer.posts);
@@ -19,11 +27,25 @@ const Home = () => {
 
   return (
     <div className="home-section">
-
+      <div className={`${openModal} modal-class`}>
+        <div style={{
+          background: '#fff',
+          width: '500px',
+          height: '500px',
+          position: 'absolute',
+          margin: 'auto',
+        }}
+        >
+          <i
+            onClick={() => setOpenModal('d-none')}
+            className="fas fa-times"
+          />
+        </div>
+      </div>
       <Navbar />
       <div className="main-inner-home-section">
         <div className="home-main-photo-section">
-          <Posts postsList={postsList} />
+          <Posts postsList={postsList} displayModal={displayModal} />
         </div>
         <div className="follow-suggestion-section">
           <div className="inner-follow-suggestion-section pb-2">

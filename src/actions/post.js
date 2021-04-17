@@ -10,11 +10,11 @@ export const postsSuccessFetch = posts => ({
   payload: posts,
 });
 
-export const fetchPosts = () => async dispatch => {
+export const fetchPosts = token => async dispatch => {
   const method = 'get';
   const path = 'posts';
   try {
-    const response = await FetchPostRequest(method, path);
+    const response = await FetchPostRequest(method, path, token);
     const dataList = JSON.parse(response.data.data);
     const list = response.data.followeesList;
     const result = { dataList, list };

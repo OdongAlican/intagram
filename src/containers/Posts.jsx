@@ -6,7 +6,7 @@ import Profileimage from '../Images/icon.png';
 import Item from '../components/Styled';
 import Post from '../components/Post';
 
-const Posts = ({ postsList }) => {
+const Posts = ({ postsList, displayModal }) => {
   const breakPoints = [
     { width: 59, itemsToShow: 1 },
     { width: 119, itemsToShow: 2 },
@@ -49,7 +49,7 @@ const Posts = ({ postsList }) => {
       <div className="common-posts">
         {
           postsList.map(post => (
-            <Post key={post.id} post={post} />
+            <Post key={post.id} post={post} displayModal={displayModal} />
           ))
         }
       </div>
