@@ -22,37 +22,42 @@ const Post = ({ post, displayModal }) => {
   const [content, setContent] = useState('');
   const dispatch = useDispatch();
   const addComment = e => {
+    const { token } = localStorage;
     e.preventDefault();
-    dispatch(addCommentToPost(content, post.id));
+    dispatch(addCommentToPost(content, post.id, token));
     setContent('');
   };
 
   const likePost = e => {
+    const { token } = localStorage;
     e.preventDefault();
-    dispatch(likeToPost(post.id));
+    dispatch(likeToPost(post.id, token));
   };
 
   const bookmarkPost = e => {
+    const { token } = localStorage;
     e.preventDefault();
-    dispatch(bookmarkToPost(post.id));
+    dispatch(bookmarkToPost(post.id, token));
   };
 
   const dislikePost = e => {
+    const { token } = localStorage;
     e.preventDefault();
     post.likes.forEach(like => {
       if (like.post_id === post.id
         && like.user_id === parseInt(localStorage.userId, 10)) {
-        dispatch(dislikeToPost(like.id));
+        dispatch(dislikeToPost(like.id, token));
       }
     });
   };
 
   const disBookmarkPost = e => {
+    const { token } = localStorage;
     e.preventDefault();
     post.bookmarks.forEach(bookmark => {
       if (bookmark.post_id === post.id
         && bookmark.user_id === parseInt(localStorage.userId, 10)) {
-        dispatch(disbookmarkToPost(bookmark.id));
+        dispatch(disbookmarkToPost(bookmark.id, token));
       }
     });
   };

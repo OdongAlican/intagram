@@ -4,7 +4,7 @@ import { postsSuccessFetch } from './post';
 export const COMMENT_SUCCESS = 'COMMENT_SUCCESS';
 export const COMMENT_FAILURE = 'COMMENT_FAILURE';
 
-export const addCommentToPost = (content, id) => async dispatch => {
+export const addCommentToPost = (content, id, token) => async dispatch => {
   const method = 'post';
   const path = `/posts/${id}/comments`;
   const data = {
@@ -13,7 +13,7 @@ export const addCommentToPost = (content, id) => async dispatch => {
     post_id: id,
   };
   try {
-    const response = await CommentOnPost(method, path, data);
+    const response = await CommentOnPost(method, path, data, token);
     const dataList = JSON.parse(response.data.data);
     const list = response.data.followeesList;
     const result = { dataList, list };

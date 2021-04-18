@@ -5,14 +5,14 @@ import {
 } from '../utils/api';
 import { postsSuccessFetch } from './post';
 
-export const likeToPost = id => async dispatch => {
+export const likeToPost = (id, token) => async dispatch => {
   const method = 'post';
   const path = `/posts/${id}/likes`;
   const data = {
     post_id: id,
   };
   try {
-    const response = await LikeAPost(method, path, data);
+    const response = await LikeAPost(method, path, data, token);
     const dataList = JSON.parse(response.data.data);
     const list = response.data.followeesList;
     const result = { dataList, list };
@@ -22,14 +22,14 @@ export const likeToPost = id => async dispatch => {
   }
 };
 
-export const bookmarkToPost = id => async dispatch => {
+export const bookmarkToPost = (id, token) => async dispatch => {
   const method = 'post';
   const path = `/posts/${id}/bookmarks`;
   const data = {
     post_id: id,
   };
   try {
-    const response = await bookmarkAPost(method, path, data);
+    const response = await bookmarkAPost(method, path, data, token);
     const dataList = JSON.parse(response.data.data);
     const list = response.data.followeesList;
     const result = { dataList, list };
@@ -39,12 +39,12 @@ export const bookmarkToPost = id => async dispatch => {
   }
 };
 
-export const dislikeToPost = id => async dispatch => {
+export const dislikeToPost = (id, token) => async dispatch => {
   console.log(id, 'inside data first');
   const method = 'delete';
   const path = `/likes/${id}`;
   try {
-    const response = await DeleteAPostLike(method, path);
+    const response = await DeleteAPostLike(method, path, token);
     const dataList = JSON.parse(response.data.data);
     const list = response.data.followeesList;
     const result = { dataList, list };
@@ -54,11 +54,11 @@ export const dislikeToPost = id => async dispatch => {
   }
 };
 
-export const disbookmarkToPost = id => async dispatch => {
+export const disbookmarkToPost = (id, token) => async dispatch => {
   const method = 'delete';
   const path = `/bookmarks/${id}`;
   try {
-    const response = await DeleteAPostBookmark(method, path);
+    const response = await DeleteAPostBookmark(method, path, token);
     console.log(response, 'inside data');
     const dataList = JSON.parse(response.data.data);
     const list = response.data.followeesList;

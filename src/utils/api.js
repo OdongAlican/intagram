@@ -30,27 +30,32 @@ export const FetchPeopleToFollow = async (method, path) => {
   return response;
 };
 
-export const CommentOnPost = async (method, path, data) => {
-  const response = await axios[method](`${baseUrl}/${path}`, data, headers);
+export const CommentOnPost = async (method, path, data, token) => {
+  const headings = { headers: { Authorization: `Bearer ${token}` } };
+  const response = await axios[method](`${baseUrl}/${path}`, data, headings);
   return response;
 };
 
-export const LikeAPost = async (method, path, data) => {
-  const response = await axios[method](`${baseUrl}/${path}`, data, headers);
+export const LikeAPost = async (method, path, data, token) => {
+  const headings = { headers: { Authorization: `Bearer ${token}` } };
+  const response = await axios[method](`${baseUrl}/${path}`, data, headings);
   return response;
 };
 
-export const DeleteAPostLike = async (method, path) => {
-  const response = await axios[method](`${baseUrl}/${path}`, headers);
+export const DeleteAPostLike = async (method, path, token) => {
+  const headings = { headers: { Authorization: `Bearer ${token}` } };
+  const response = await axios[method](`${baseUrl}/${path}`, headings);
   return response;
 };
 
-export const bookmarkAPost = async (method, path, data) => {
-  const response = await axios[method](`${baseUrl}/${path}`, data, headers);
+export const bookmarkAPost = async (method, path, data, token) => {
+  const headings = { headers: { Authorization: `Bearer ${token}` } };
+  const response = await axios[method](`${baseUrl}/${path}`, data, headings);
   return response;
 };
 
-export const DeleteAPostBookmark = async (method, path) => {
-  const response = await axios[method](`${baseUrl}/${path}`, headers);
+export const DeleteAPostBookmark = async (method, path, token) => {
+  const headings = { headers: { Authorization: `Bearer ${token}` } };
+  const response = await axios[method](`${baseUrl}/${path}`, headings);
   return response;
 };
