@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import { addCommentToPost } from '../actions/comment';
 import {
   likeToPost, dislikeToPost,
@@ -17,6 +18,7 @@ import LastSeen from './LastSeen';
 
 const Post = ({ post, displayModal }) => {
   const images = [NikeOne, NikeTwo, NikeThree];
+  const history = useHistory();
   const likesArray = [];
   const bookmarksArray = [];
   const [content, setContent] = useState('');
@@ -69,6 +71,11 @@ const Post = ({ post, displayModal }) => {
   post.bookmarks.forEach(post => {
     bookmarksArray.push(post.user_id);
   });
+
+  const viewComponentDetail = () => {
+    console.log(post.id, 'random id');
+    history.push(`/post/${post.id}`);
+  };
 
   return (
     <div className="single-post-section">
@@ -140,6 +147,7 @@ const Post = ({ post, displayModal }) => {
             height="24"
             viewBox="0 0 48 48"
             width="24"
+            onClick={viewComponentDetail}
           >
             <path clipRule="evenodd" d="M47.5 46.1l-2.8-11c1.8-3.3 2.8-7.1 2.8-11.1C47.5 11 37 .5 24 .5S.5 11 .5 24 11 47.5 24 47.5c4 0 7.8-1 11.1-2.8l11 2.8c.8.2 1.6-.6 1.4-1.4zm-3-22.1c0 4-1 7-2.6 10-.2.4-.3.9-.2 1.4l2.1 8.4-8.3-2.1c-.5-.1-1-.1-1.4.2-1.8 1-5.2 2.6-10 2.6-11.4 0-20.6-9.2-20.6-20.5S12.7 3.5 24 3.5 44.5 12.7 44.5 24z" fillRule="evenodd" />
           </svg>

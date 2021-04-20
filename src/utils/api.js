@@ -59,3 +59,9 @@ export const DeleteAPostBookmark = async (method, path, token) => {
   const response = await axios[method](`${baseUrl}/${path}`, headings);
   return response;
 };
+
+export const FetchSinglePostRequest = async (method, path, token) => {
+  const headings = { headers: { Authorization: `Bearer ${token}` } };
+  const response = await axios[method](`${baseUrl}/${path}`, headings);
+  return response;
+};

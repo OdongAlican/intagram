@@ -1,10 +1,11 @@
-import { FETCH_POSTS_SUCCESS } from '../actions/post';
+import { FETCH_POSTS_SUCCESS, FETCH_SINGLE_POST_SUCCESS } from '../actions/post';
 
 const initialState = {
   posts: [],
   followeeList: [],
   error: '',
   loading: false,
+  postDetails: {},
 };
 
 const postReducer = (state = initialState, action) => {
@@ -15,6 +16,13 @@ const postReducer = (state = initialState, action) => {
         posts: action.payload.dataList,
         followeeList: action.payload.list,
         error: '',
+      };
+    case FETCH_SINGLE_POST_SUCCESS:
+      return {
+        ...state,
+        posts: [],
+        followeeList: [],
+        postDetails: action.payload,
       };
     default:
       return state;

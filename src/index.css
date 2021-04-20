@@ -367,7 +367,6 @@
   border-radius: 5px;
   left: -180px;
   background-color: #fff;
-  
 }
 
 .logout-link-section button {
@@ -410,6 +409,14 @@
   align-items: center;
 }
 
+.hide-modal {
+  display: none;
+}
+
+.pop-up-modal {
+  display: block;
+}
+
 .fa-times {
   cursor: pointer;
 }
@@ -417,7 +424,8 @@
 /* Profile section */
 
 .upper-user-profile-section,
-.inner-navigation-section {
+.inner-navigation-section,
+.upper-post-section {
   width: 72.12%;
   padding: 30px 20px 0;
   margin: 60px auto;
@@ -902,4 +910,207 @@ svg {
   flex-direction: column;
   width: 100%;
   min-height: 85vh;
+}
+
+/* Post Details */
+
+.post-details-inner-section .image-section {
+  flex: 3.5;
+}
+
+.post-details-inner-section .image-section img {
+  height: 598px;
+}
+
+.post-details-inner-section .post-details-right-section {
+  flex: 2;
+}
+
+.post-detail-header {
+  padding: 16px;
+}
+
+.image-name-following-section {
+  display: flex;
+}
+
+.image-name-following-section img {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+
+.name-following-type-section {
+  padding-left: 16px;
+  display: flex;
+  align-items: center;
+  color: #262626;
+  font-weight: 600;
+  font-size: 14px;
+  flex: 1;
+  align-items: center;
+}
+
+.name-following-type-section-dot {
+  height: 4px;
+  width: 4px;
+  background-color: #262626;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.name-following-type-section-icons {
+  margin-left: auto;
+}
+
+.post-details-middle-section {
+  height: 375px;
+  border-bottom: 1.8px solid #dbdbdb;
+  border-top: 1.8px solid #dbdbdb;
+  overflow-y: auto;
+}
+
+.inner-post-details-middle-section {
+  padding: 12px 0;
+}
+
+.inner-post-details-middle-section {
+  font-size: 14px;
+  display: flex;
+}
+
+.top-post-details-section {
+  padding: 12px 16px;
+}
+
+.post-details-middle-section::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.top-post-details-section-inner {
+  padding-bottom: 12px;
+  display: flex;
+}
+
+.top-post-details-section-inner img,
+.inner-post-details-middle-section img {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+
+.top-post-details-section-inner .image-division-section,
+.inner-post-details-middle-section .image-division-section {
+  padding-right: 18px;
+}
+
+.top-post-details-section-inner .span-division-section {
+  font-size: 14px;
+  color: #262626;
+}
+
+.top-post-details-section-inner .span-division-section span {
+  font-weight: 600;
+}
+
+.top-post-details-section .plus-button-section {
+  padding: 12px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-post-details-middle-section .span-division-section span {
+  font-weight: 600;
+}
+
+.details-last-posted-time {
+  font-size: 12px;
+  color: #8e8e8e;
+  padding: 10px 0;
+}
+
+.details-last-posted-time-comment,
+.details-last-posted-time-comment-likes {
+  font-size: 12px;
+  color: #8e8e8e;
+  font-weight: 300;
+}
+
+.details-last-posted-time-comment-likes {
+  padding: 0 16px;
+  margin-top: 6px;
+}
+
+.post-details-lower-icons-section {
+  display: flex;
+  padding: 0 16px;
+}
+
+.last-to-like-section {
+  padding: 0 16px;
+  display: flex;
+  font-size: 14px;
+  color: #262626;
+}
+
+.last-to-like-section img {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.last-to-like-section span {
+  font-weight: 600;
+}
+
+.details-last-posted-time-comment-comment {
+  margin-top: 10px;
+  padding-top: 8px;
+}
+
+.upper-post-section-linner {
+  border-top: 1.2px solid #dbdbdb;
+  width: 100%;
+  background-color: #dbdbdb;
+}
+
+.upper-post-section-more-post,
+.upper-post-section-linner-top {
+  width: 72.12%;
+  padding: 30px 20px 0;
+  margin: auto;
+  display: flex;
+  color: #8e8e8e;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.upper-post-section-linner-top {
+  margin-top: -40px;
+}
+
+.upper-other-recent-post-section {
+  width: 72.12%;
+  padding: 16px 20px 0;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 28px;
+  margin-bottom: 30px;
+}
+
+.upper-other-recent-post-section img {
+  width: 100%;
+}
+
+.upper-other-recent-post-section-first,
+.upper-other-recent-post-section-secon,
+.upper-other-recent-post-section-third,
+.upper-other-recent-post-section-forth,
+.upper-other-recent-post-section-fifth,
+.upper-other-recent-post-section-sixth {
+  width: 100%;
 }

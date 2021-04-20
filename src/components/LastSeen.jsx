@@ -6,8 +6,6 @@ import ReactTimeAgo from 'react-time-ago';
 export default function LastSeen({ date }) {
   return (
     <div>
-      Created
-      {' '}
       <ReactTimeAgo date={date} locale="en-US" />
     </div>
   );

@@ -7,6 +7,7 @@ import Signup from './auth/Signup';
 import Home from './Home';
 import Profile from './Profile';
 import ConversationsList from './ConversationsList';
+import PostDetails from './PostDetails';
 
 const Router = () => (
   <div className="router-section">
@@ -18,6 +19,7 @@ const Router = () => (
         <Route exact path="/signup" component={Signup} />
         <PrivateRoute exact path="/home" component={Home} />
         <PrivateRoute path="/profile/:id" component={Profile} />
+        <PrivateRoute path="/post/:id" component={PostDetails} />
       </Switch>
     </BrowserRouter>
   </div>

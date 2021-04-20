@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import Navbar from './Navbar';
 import Posts from '../containers/Posts';
 import Profileimage from '../Images/icon.png';
@@ -11,13 +12,18 @@ import { fetchPosts } from '../actions/post';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [openModal, setOpenModal] = useState('d-none');
+  const [openModal, setOpenModal] = useState('hide-modal');
+  const history = useHistory();
 
   const displayModal = id => {
-    setOpenModal('');
+    setOpenModal('modal-class');
     console.log(id);
   };
 
+  const hideModal = () => {
+    setOpenModal('hide-modal');
+    history.push('/home');
+  };
   useEffect(() => {
     dispatch(fetchPosts(localStorage.token));
   }, []);
@@ -27,18 +33,16 @@ const Home = () => {
 
   return (
     <div className="home-section">
-      <div className={`${openModal} modal-class`}>
+      <div className={`${openModal}`}>
         <div style={{
           background: '#fff',
-          width: '500px',
-          height: '500px',
-          position: 'absolute',
-          margin: 'auto',
+          width: '55em',
+          height: '30em',
         }}
         >
           <i
-            onClick={() => setOpenModal('d-none')}
-            className="fas fa-times"
+            onClick={hideModal}
+            className="fas fa-times border p-2"
           />
         </div>
       </div>
