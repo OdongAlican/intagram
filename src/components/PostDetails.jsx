@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +13,7 @@ import LastSeen from './LastSeen';
 import Footer from './Footer';
 
 const PostDetails = () => {
-  const images = [NikeOne, NikeTwo, NikeThree];
+  const images = [NikeOne, NikeTwo, NikeThree, NikeThree, NikeOne, NikeTwo];
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -23,6 +24,7 @@ const PostDetails = () => {
 
   const postData = useSelector(state => state.postReducer.postDetails);
   console.log(postData, 'post data');
+  console.log(typeof localStorage.userId);
 
   return (
     <div className="post-details-section">
@@ -35,10 +37,10 @@ const PostDetails = () => {
               className="main-image-carousel"
             >
               {
-                images.map(image => (
+                images.map((image, index) => (
                   <Carousel.Item
                     className="main-image-carousel-inner"
-                    key={image}
+                    key={index}
                   >
                     <img src={image} alt="first" />
                   </Carousel.Item>
@@ -48,23 +50,32 @@ const PostDetails = () => {
           </div>
         </div>
         <div className="post-details-right-section border">
-          <div className="post-detail-header ">
-            <div className="image-name-following-section">
-              <img src={Profileimage} alt="profile" />
-              <div className="name-following-type-section">
-                <div className="name-following-type-section-user">
-                  Lambogini
+          {
+              Object.keys(postData).length > 0 ? (
+                <div className="post-detail-header ">
+                  <div className="image-name-following-section">
+                    <img src={Profileimage} alt="profile" />
+                    <div className="name-following-type-section">
+                      <div className="name-following-type-section-user">
+                        {postData.user.name}
+                      </div>
+                      <div className="name-following-type-section-dot" />
+                      <div className="name-following-type-section-following">
+                        Following
+                      </div>
+                      <div className="name-following-type-section-icons">
+                        <i className="fas fa-ellipsis-h" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="name-following-type-section-dot" />
-                <div className="name-following-type-section-following">
-                  Following
+              ) : (
+                <div className="loading-content">
+                  Loading ....
                 </div>
-                <div className="name-following-type-section-icons">
-                  <i className="fas fa-ellipsis-h" />
-                </div>
-              </div>
-            </div>
-          </div>
+              )
+          }
+
           <div className="post-details-middle-section">
             {
                 Object.keys(postData).length > 0 ? (
@@ -75,13 +86,8 @@ const PostDetails = () => {
                       </div>
                       <div className="span-division-section">
 
-                        <span>top</span>
-                        {' '}
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Laborum hic eligendi doloremque aut iure, non impedit
-                        cumque blanditiis, iusto voluptate rerum ex exercitationem autem.
-                        Animi doloribus nisi aperiam facilis autem.
-
+                        <span>{postData.user.name}</span>
+                        {postData.content}
                         <div className="details-last-posted-time">
                           <LastSeen date={postData.created_at} />
                         </div>
@@ -101,9 +107,8 @@ const PostDetails = () => {
                             </div>
                             <div className="span-division-section">
 
-                              <span>top</span>
-                              {' '}
-                              Lorem ipsum, dolor sit
+                              <span>{comment.user.name}</span>
+                              {comment.content}
                               <div className="details-last-posted-time-comment">
                                 <LastSeen date={comment.created_at} />
                               </div>
@@ -238,24 +243,32 @@ const PostDetails = () => {
         </div>
       </div>
       <div className="upper-other-recent-post-section">
-        <div className="upper-other-recent-post-section-first">
-          <img src={NikeOne} alt="First" />
-        </div>
-        <div className="upper-other-recent-post-section-secon">
-          <img src={NikeTwo} alt="Second" />
-        </div>
-        <div className="upper-other-recent-post-section-third">
-          <img src={NikeThree} alt="Third" />
-        </div>
-        <div className="upper-other-recent-post-section-forth">
-          <img src={NikeThree} alt="Third" />
-        </div>
-        <div className="upper-other-recent-post-section-fifth">
-          <img src={NikeOne} alt="First" />
-        </div>
-        <div className="upper-other-recent-post-section-sixth">
-          <img src={NikeTwo} alt="Second" />
-        </div>
+        {
+          Object.keys(postData).length > 0 ? (
+            postData.user.posts.slice(0, 6).map(post => (
+              <div
+                key={post.id}
+                className="upper-other-recent-post-section-first"
+              >
+                <div className="upper-other-recent-post-section-first-inner">
+                  <div className="upper-other-recent-post-section-first-inner-heart" />
+                  <div className="upper-other-recent-post-section-first-inner-count">
+                    { post.likes.length }
+                  </div>
+                  <div className="upper-other-recent-post-section-first-inner-comment" />
+                  <div className="upper-other-recent-post-section-first-inner-number">
+                    { post.comments.length }
+                  </div>
+                </div>
+                <img src={NikeOne} alt="First" />
+              </div>
+            ))
+          ) : (
+            <div className="loading-lower-post">
+              Loading!!!
+            </div>
+          )
+        }
       </div>
       <Footer />
     </div>
