@@ -16,6 +16,7 @@ const PostDetails = () => {
   const images = [NikeOne, NikeTwo, NikeThree, NikeThree, NikeOne, NikeTwo];
   const { id } = useParams();
   const dispatch = useDispatch();
+  const usersId = [];
 
   useEffect(() => {
     const { token } = localStorage;
@@ -23,8 +24,31 @@ const PostDetails = () => {
   }, []);
 
   const postData = useSelector(state => state.postReducer.postDetails);
-  console.log(postData, 'post data');
-  console.log(typeof localStorage.userId);
+
+  const checkFollowing = () => {
+    if (Object.keys(postData).length > 0) {
+      postData.user.followees.forEach(val => {
+        usersId.push(val.id);
+      });
+      console.log(usersId, 'users id');
+      console.log(parseInt(localStorage.userId, 10), 'personal id');
+      if (usersId.includes(parseInt(localStorage.userId, 10))) {
+        return (
+          <div className="sample-text-secton">
+            Following
+          </div>
+        );
+      }
+      return (
+        <div className="sample-text-secton">
+          Follow
+        </div>
+      );
+    }
+    return (
+      <div>Loading!!!</div>
+    );
+  };
 
   return (
     <div className="post-details-section">
@@ -61,7 +85,7 @@ const PostDetails = () => {
                       </div>
                       <div className="name-following-type-section-dot" />
                       <div className="name-following-type-section-following">
-                        Following
+                        {checkFollowing()}
                       </div>
                       <div className="name-following-type-section-icons">
                         <i className="fas fa-ellipsis-h" />
