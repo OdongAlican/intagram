@@ -77,7 +77,7 @@ const Home = () => {
             </div>
           </div>
           {
-            followeesList.splice(0, 5).map(userdetail => (
+            followeesList.slice(0, 5).map(userdetail => (
               <PeopleToFollow key={userdetail.id} userdetail={userdetail} />
             ))
           }
