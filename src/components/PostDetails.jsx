@@ -1,8 +1,9 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useEffect } from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { fetchSinglePost } from '../actions/post';
 import Navbar from './Navbar';
 import NikeOne from '../Images/nike1.jpg';
@@ -11,12 +12,40 @@ import NikeThree from '../Images/nike3.jpg';
 import Profileimage from '../Images/icon.png';
 import LastSeen from './LastSeen';
 import Footer from './Footer';
+import { addCommentToPost } from '../actions/comment';
+import {
+  bookmarkToPost, disbookmarkToPost, dislikeToPost, likeToPost,
+} from '../actions/like';
 
 const PostDetails = () => {
   const images = [NikeOne, NikeTwo, NikeThree, NikeThree, NikeOne, NikeTwo];
   const { id } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
   const usersId = [];
+  const likesArray = [];
+  const bookmarksArray = [];
+
+  const [content, setContent] = useState('');
+
+  const addComment = e => {
+    const { token } = localStorage;
+    e.preventDefault();
+    dispatch(addCommentToPost(content, id, token, id, history));
+    setContent('');
+  };
+
+  const likePost = e => {
+    const { token } = localStorage;
+    e.preventDefault();
+    dispatch(likeToPost(id, token, id, history));
+  };
+
+  const bookmarkPost = e => {
+    const { token } = localStorage;
+    e.preventDefault();
+    dispatch(bookmarkToPost(id, token, id, history));
+  };
 
   useEffect(() => {
     const { token } = localStorage;
@@ -25,13 +54,47 @@ const PostDetails = () => {
 
   const postData = useSelector(state => state.postReducer.postDetails);
 
+  if (Object.keys(postData).includes('likes')) {
+    postData.likes.forEach(post => {
+      likesArray.push(post.user_id);
+    });
+  }
+
+  if (Object.keys(postData).includes('likes')) {
+    postData.bookmarks.forEach(post => {
+      bookmarksArray.push(post.user_id);
+    });
+  }
+
+  const dislikePost = e => {
+    const { token } = localStorage;
+    e.preventDefault();
+    postData.likes.forEach(like => {
+      if (like.post_id === postData.id
+        && like.user_id === parseInt(localStorage.userId, 10)) {
+        dispatch(dislikeToPost(like.id, token, postData.id, history));
+      }
+    });
+  };
+
+  const disBookmarkPost = e => {
+    const { token } = localStorage;
+    e.preventDefault();
+    postData.bookmarks.forEach(bookmark => {
+      if (bookmark.post_id === postData.id
+        && bookmark.user_id === parseInt(localStorage.userId, 10)) {
+        dispatch(disbookmarkToPost(bookmark.id, token, postData.id, history));
+      }
+    });
+  };
+
   const checkFollowing = () => {
     if (Object.keys(postData).length > 0) {
-      postData.user.followees.forEach(val => {
+      postData.user.followers.forEach(val => {
         usersId.push(val.id);
       });
-      console.log(usersId, 'users id');
-      console.log(parseInt(localStorage.userId, 10), 'personal id');
+      console.log(usersId, 'users identification');
+      console.log(localStorage.userId, 'current users identification');
       if (usersId.includes(parseInt(localStorage.userId, 10))) {
         return (
           <div className="sample-text-secton">
@@ -148,26 +211,48 @@ const PostDetails = () => {
           </div>
           <div className="post-details-lower-section">
             <div className="post-details-lower-icons-section">
-              <svg
-                aria-label="Like"
-                className="_8-yf5 first-post-svg"
-                fill="#262626"
-                height="24"
-                viewBox="0 0 48 48"
-                width="24"
+              {
+                !likesArray.includes(parseInt(localStorage.userId, 10)) ? (
+                  <svg
+                    onClick={likePost}
+                    aria-label="Like"
+                    className="_8-yf5 first-post-svg"
+                    fill="#262626"
+                    height="24"
+                    viewBox="0 0 48 48"
+                    width="24"
+                  >
+                    <path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z" />
+                  </svg>
+                ) : (
+                  <svg
+                    onClick={dislikePost}
+                    aria-label="Like"
+                    className="_8-yf5 first-post-svg"
+                    height="24"
+                    fill="red"
+                    viewBox="0 0 48 48"
+                    width="24"
+                  >
+                    <path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z" />
+                  </svg>
+                )
+              }
+              <label
+                className="second-post-svg"
+                htmlFor="contentText"
               >
-                <path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z" />
-              </svg>
-              <svg
-                aria-label="Comment"
-                className="_8-yf5 second-post-svg"
-                fill="#262626"
-                height="24"
-                viewBox="0 0 48 48"
-                width="24"
-              >
-                <path clipRule="evenodd" d="M47.5 46.1l-2.8-11c1.8-3.3 2.8-7.1 2.8-11.1C47.5 11 37 .5 24 .5S.5 11 .5 24 11 47.5 24 47.5c4 0 7.8-1 11.1-2.8l11 2.8c.8.2 1.6-.6 1.4-1.4zm-3-22.1c0 4-1 7-2.6 10-.2.4-.3.9-.2 1.4l2.1 8.4-8.3-2.1c-.5-.1-1-.1-1.4.2-1.8 1-5.2 2.6-10 2.6-11.4 0-20.6-9.2-20.6-20.5S12.7 3.5 24 3.5 44.5 12.7 44.5 24z" fillRule="evenodd" />
-              </svg>
+                <svg
+                  aria-label="Comment"
+                  className="_8-yf5"
+                  fill="#262626"
+                  height="24"
+                  viewBox="0 0 48 48"
+                  width="24"
+                >
+                  <path clipRule="evenodd" d="M47.5 46.1l-2.8-11c1.8-3.3 2.8-7.1 2.8-11.1C47.5 11 37 .5 24 .5S.5 11 .5 24 11 47.5 24 47.5c4 0 7.8-1 11.1-2.8l11 2.8c.8.2 1.6-.6 1.4-1.4zm-3-22.1c0 4-1 7-2.6 10-.2.4-.3.9-.2 1.4l2.1 8.4-8.3-2.1c-.5-.1-1-.1-1.4.2-1.8 1-5.2 2.6-10 2.6-11.4 0-20.6-9.2-20.6-20.5S12.7 3.5 24 3.5 44.5 12.7 44.5 24z" fillRule="evenodd" />
+                </svg>
+              </label>
               <svg
                 aria-label="Share Post"
                 className="_8-yf5 third-post-svg"
@@ -178,16 +263,33 @@ const PostDetails = () => {
               >
                 <path d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z" />
               </svg>
-              <svg
-                aria-label="Save"
-                className="_8-yf5 last-pos-svg"
-                fill="#262626"
-                height="24"
-                viewBox="0 0 48 48"
-                width="24"
-              >
-                <path d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 28.9 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1z" />
-              </svg>
+              {
+          !bookmarksArray.includes(parseInt(localStorage.userId, 10)) ? (
+            <svg
+              aria-label="Save"
+              onClick={bookmarkPost}
+              className="_8-yf5 last-pos-svg"
+              fill="#262626"
+              height="24"
+              viewBox="0 0 48 48"
+              width="24"
+            >
+              <path d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 29 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1zM24 26c.8 0 1.6.3 2.2.9l15.8 16V3H6v39.9l15.8-16c.6-.6 1.4-.9 2.2-.9z" />
+            </svg>
+          ) : (
+            <svg
+              aria-label="Save"
+              onClick={disBookmarkPost}
+              className="_8-yf5 last-pos-svg"
+              fill="#262626"
+              height="24"
+              viewBox="0 0 48 48"
+              width="24"
+            >
+              <path d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 28.9 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1z" />
+            </svg>
+          )
+          }
             </div>
           </div>
           {
@@ -237,15 +339,16 @@ const PostDetails = () => {
               </svg>
             </div>
             <form
-            // onSubmit={addComment}
+              onSubmit={addComment}
               className="comment-input-section-form"
             >
               <input
                 className="comment-input-section-input"
                 type="text"
-              // value={content}
-              // onChange={e => setContent(e.target.value)}
+                value={content}
+                onChange={e => setContent(e.target.value)}
                 placeholder="Add a comment..."
+                id="contentText"
               />
               <input
                 className="comment-input-section-post"
