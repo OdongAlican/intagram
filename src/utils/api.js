@@ -31,6 +31,7 @@ export const FetchPeopleToFollow = async (method, path) => {
 };
 
 export const CommentOnPost = async (method, path, data, token) => {
+  console.log(token, method, path, 'front-end-data in comment');
   const headings = { headers: { Authorization: `Bearer ${token}` } };
   const response = await axios[method](`${baseUrl}/${path}`, data, headings);
   return response;
@@ -63,5 +64,12 @@ export const DeleteAPostBookmark = async (method, path, token) => {
 export const FetchSinglePostRequest = async (method, path, token) => {
   const headings = { headers: { Authorization: `Bearer ${token}` } };
   const response = await axios[method](`${baseUrl}/${path}`, headings);
+  return response;
+};
+
+export const FollowUser = async (method, id, path, token) => {
+  const headings = { headers: { Authorization: `Bearer ${token}` } };
+  console.log(headings, 'headings data');
+  const response = await axios[method](`${baseUrl}/${path}`, id, headings);
   return response;
 };
