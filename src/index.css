@@ -589,6 +589,10 @@ svg {
   margin-left: auto;
 }
 
+.follow-switch-section span {
+  cursor: pointer;
+}
+
 .follow-middle-suggestion-section {
   display: flex;
   padding-top: 10px;
